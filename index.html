@@ -167,14 +167,21 @@ b,strong{font-weight:700;}
 .wday .w-ico{display:flex;justify-content:center;gap:4px;margin:10px 0 8px;color:var(--accent-2);}
 .wday .w-ico .icon{width:2.1em;height:2.1em;stroke-width:1.5;}
 .wday .w-ico .arrow{align-self:center;color:var(--muted);width:1.1em;height:1.1em;}
+.wday .loc{
+  font-size:.66rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);margin-bottom:1px;
+}
 .wday .t{font-size:1.3rem;font-weight:700;}
 .wday .t small{font-size:.72em;font-weight:600;color:var(--muted);}
 .wday .desc{font-size:.84rem;color:var(--muted);margin-top:6px;text-wrap:pretty;}
-.wday .vr{
-  font-size:.76rem;color:var(--muted);
+.wday .dest{
+  font-size:.78rem;color:var(--muted);
   margin-top:12px;padding-top:10px;
   border-top:1px dashed var(--line);
 }
+.wday .dest b{color:var(--accent);}
+.wday .dest + .dest{margin-top:4px;padding-top:0;border-top:none;}
 .wnote{font-size:.82rem;color:var(--muted);margin-top:12px;text-wrap:pretty;}
 .wnote a{color:var(--accent);font-weight:600;}
 
@@ -362,31 +369,38 @@ html[data-theme] section.trip .links .icon{color:var(--acc);}
   <div class="wday">
     <div class="d">Pátek 12. 6.</div>
     <div class="w-ico"><svg class="icon"><use href="#i-cloud-rain"></use></svg><svg class="icon arrow"><use href="#i-arrow-r"></use></svg><svg class="icon"><use href="#i-cloud-sun"></use></svg></div>
-    <div class="t">18 °C <small>/ 12 °C</small></div>
-    <p class="desc">Déšť hlavně v noci a dopoledne, odpoledne se trhá oblačnost. Večer čerstvý vítr.</p>
-    <div class="vr">Vrchlabí 17 °C · přeháňky</div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">13 °C <small>/ 7 °C</small></div>
+    <p class="desc">Dopoledne místy slabý déšť, odpoledne oblačno až polojasno a převážně sucho. Chladný den.</p>
+    <div class="dest"><b>Stachelberg:</b> 13 °C · oblačno, téměř bez deště</div>
   </div>
   <div class="wday">
     <div class="d">Sobota 13. 6.</div>
     <div class="w-ico"><svg class="icon"><use href="#i-cloud-rain"></use></svg></div>
-    <div class="t">14 °C <small>/ 9 °C</small></div>
-    <p class="desc">Chladněji, občasný slabý déšť po většinu dne. Ideální den „pod střechu“.</p>
-    <div class="vr">Vrchlabí 13 °C · slabý déšť</div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">17 °C <small>/ 11 °C</small></div>
+    <p class="desc">Nejteplejší den, ale deštivý – déšť a přeháňky po většinu dne. Ideální den „pod střechu“.</p>
+    <div class="dest"><b>Vrchlabí:</b> 17 °C · déšť, místy vydatný</div>
+    <div class="dest"><b>Karpacz:</b> 17 °C · jen občasné přeháňky</div>
+    <div class="dest"><b>Harrachov:</b> 17 °C · déšť po většinu dne</div>
   </div>
   <div class="wday">
     <div class="d">Neděle 14. 6.</div>
-    <div class="w-ico"><svg class="icon"><use href="#i-cloud"></use></svg></div>
-    <div class="t">15 °C <small>/ 9 °C</small></div>
-    <p class="desc">Oblačno, převážně bez deště – dobrý den na pěší výlet.</p>
-    <div class="vr">Vrchlabí 14 °C · oblačno</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-cloud"></use></svg><svg class="icon arrow"><use href="#i-arrow-r"></use></svg><svg class="icon"><use href="#i-cloud-rain"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">12 °C <small>/ 8 °C</small></div>
+    <p class="desc">Chladno a oblačno, během dne občasné přeháňky – mezi nimi se dá hezky projít.</p>
+    <div class="dest"><b>Janské Lázně:</b> 12 °C · oblačno, občas přeháňka</div>
   </div>
 </div>
-<p class="wnote">Předpověď ze stanice Horní Maršov (3 km od vily) a Vrchlabí, zdroj in-pocasi.cz, staženo 12. 6.
-Před výletem doporučujeme ověřit aktuální vývoj:
-<a target="_blank" rel="noopener" href="https://www.in-pocasi.cz/predpoved-pocasi/cz/kralovehradecky/marsov-5999/">okolí vily</a> ·
-<a target="_blank" rel="noopener" href="https://www.ventusky.com/cs/50.779;15.752">Karpacz</a> ·
-<a target="_blank" rel="noopener" href="https://www.ventusky.com/cs/50.772;15.431">Harrachov</a>.
-V Karpaczi i Harrachově lze čekat velmi podobné počasí jako u vily.</p>
+<p class="wnote">Předpověď yr.no (Norský meteorologický institut) pro přesné souřadnice vily a jednotlivých cílů,
+teploty = denní max/min (6–22 h), staženo 12. 6. Před výletem doporučujeme ověřit aktuální vývoj (yr.no je v angličtině):
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.62545,15.8136">Villa Rudolf</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.634,15.906">Stachelberg</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.63,15.783">Janské Lázně</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.6264,15.6094">Vrchlabí</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.7766,15.7546">Karpacz</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.771,15.4296">Harrachov</a>.</p>
 
 <div class="card plan">
   <div class="plan-h"><svg class="icon"><use href="#i-route"></use></svg><b>Doporučené rozložení dnů</b></div>
@@ -681,7 +695,8 @@ V Karpaczi i Harrachově lze čekat velmi podobné počasí jako u vily.</p>
 
 <footer>
   <p>Připraveno ve Ville Rudolf pro paní Soňu Černou · villarudolf.com · informace ověřeny 12. 6. 2026 z oficiálních webů
-  (stachelberg.cz, treetop-walks.com, janskelazne.com, aquacentrum-vrchlabi.cz, golebiewski.pl, sklarnaharrachov.cz).</p>
+  (stachelberg.cz, treetop-walks.com, janskelazne.com, aquacentrum-vrchlabi.cz, golebiewski.pl, sklarnaharrachov.cz) ·
+  předpověď počasí: yr.no.</p>
   <p>Otevírací doby a ceny se mohou změnit – před cestou doporučujeme rychlou kontrolu odkazů výše. Přejeme Vám krásné výlety!</p>
 </footer>
 
