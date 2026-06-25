@@ -430,8 +430,9 @@ html[data-theme] section.trip .links .icon{color:var(--acc);}
     <div class="dest">Gute Heimreise!</div>
   </div>
 </div>
-<p class="wnote">Vorhersage von yr.no (Norwegisches Meteorologisches Institut) für die genauen Koordinaten der Villa
-und der einzelnen Ziele; Temperaturen = Tageshöchst-/-tiefstwert (6–22 Uhr), abgerufen am 25. 6.
+<p class="wnote">Die Vorhersage wird live von yr.no (Norwegisches Meteorologisches Institut) geladen und bei jedem Besuch
+aktualisiert – Tageshöchst-/-tiefstwert (6–22 Uhr) für die genauen Koordinaten der Villa und der einzelnen Ziele.
+<span id="wx-stand"></span>
 Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
 <a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.62545,15.8136">Villa Rudolf</a> ·
 <a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.7359,15.7400">Sněžka</a> ·
@@ -883,6 +884,113 @@ Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
 </footer>
 
 </div>
+
+<!-- Live-Wetter von yr.no (api.met.no). Aktualisiert die Werte oben bei jedem Besuch;
+     bei Nichterreichbarkeit der API bleiben die statischen Werte als Fallback stehen. -->
+<script>
+(function () {
+  var STAY = ['2026-06-26','2026-06-27','2026-06-28','2026-06-29','2026-06-30','2026-07-01','2026-07-02'];
+  var VILLA = { lat: 50.62545, lon: 15.8136, alt: 516 };
+  var DAYS = [
+    { dest: { lat: 50.63,    lon: 15.783,  alt: 650 },  label: 'Janské Lázně',    pre: 'Anreisetag: ' },
+    { dest: { lat: 50.7359,  lon: 15.7400, alt: 1603 }, label: 'Sněžka (Gipfel)', pre: '' },
+    { dest: { lat: 50.6264,  lon: 15.6094, alt: 480 },  label: 'Vrchlabí',        pre: '' },
+    { dest: { lat: 50.63,    lon: 15.783,  alt: 650 },  label: 'Janské Lázně',    pre: '' },
+    { dest: { lat: 50.6340,  lon: 15.9060, alt: 615 },  label: 'Stachelberg',     pre: '' },
+    { dest: { lat: 50.771,   lon: 15.4296, alt: 665 },  label: 'Harrachov',       pre: '' },
+    { dest: null,                                         label: null,             pre: 'Abreisetag: ' }
+  ];
+
+  function addDay(d) { var t = new Date(d + 'T00:00:00Z'); t.setUTCDate(t.getUTCDate() + 1); return t.toISOString().slice(0, 10); }
+
+  function look(code) {
+    var c = (code || '').replace(/_(day|night|polartwilight)$/, '');
+    if (c.indexOf('thunder') >= 0) return { icon: 'i-cloud-rain', text: 'Gewitter' };
+    if (c.indexOf('sleet') >= 0 || c.indexOf('snow') >= 0) return { icon: 'i-cloud-rain', text: 'Schneeregen' };
+    if (c === 'heavyrain' || c === 'heavyrainshowers') return { icon: 'i-cloud-rain', text: 'kräftiger Regen' };
+    if (c === 'lightrain' || c === 'lightrainshowers') return { icon: 'i-cloud-rain', text: 'leichter Regen' };
+    if (c.indexOf('showers') >= 0) return { icon: 'i-cloud-rain', text: 'Schauer' };
+    if (c.indexOf('rain') >= 0) return { icon: 'i-cloud-rain', text: 'Regen' };
+    if (c === 'clearsky') return { icon: 'i-sun', text: 'sonnig' };
+    if (c === 'fair') return { icon: 'i-cloud-sun', text: 'meist sonnig' };
+    if (c === 'partlycloudy') return { icon: 'i-cloud-sun', text: 'wolkig' };
+    if (c === 'fog') return { icon: 'i-cloud', text: 'Nebel' };
+    if (c === 'cloudy') return { icon: 'i-cloud', text: 'bedeckt' };
+    return { icon: 'i-cloud', text: 'wechselhaft' };
+  }
+
+  function descText(max, prefix, precip) {
+    var warm = max >= 30 ? 'Heiß' : (max >= 24 ? 'Warm' : (max >= 15 ? 'Mild' : 'Kühl'));
+    var cond;
+    if (precip >= 5 || prefix.indexOf('heavyrain') >= 0) cond = 'zeitweise kräftiger Regen – guter Tag für drinnen';
+    else if (prefix.indexOf('rain') >= 0 || prefix.indexOf('showers') >= 0 || precip > 0.5) cond = 'wechselhaft mit einzelnen Schauern';
+    else if (prefix === 'clearsky' || prefix === 'fair') cond = 'sonnig und trocken';
+    else if (prefix === 'partlycloudy') cond = 'teils sonnig, teils wolkig';
+    else cond = 'meist bewölkt, überwiegend trocken';
+    return warm + ', ' + cond + '.';
+  }
+
+  function dominant(syms) {
+    var n = {}, best = '', bc = 0;
+    syms.forEach(function (s) { var k = (s || '').replace(/_(day|night|polartwilight)$/, ''); n[k] = (n[k] || 0) + 1; if (n[k] > bc) { bc = n[k]; best = k; } });
+    return best;
+  }
+
+  function getForecast(loc) {
+    var url = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=' + loc.lat + '&lon=' + loc.lon + '&altitude=' + loc.alt;
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error('met.no ' + r.status); return r.json(); }).then(function (j) {
+      var acc = {};
+      j.properties.timeseries.forEach(function (ts) {
+        var hh = parseInt(ts.time.slice(11, 13), 10), ld = ts.time.slice(0, 10), lh = hh + 2;
+        if (lh >= 24) { lh -= 24; ld = addDay(ld); }
+        if (lh < 6 || lh > 22 || STAY.indexOf(ld) < 0) return;
+        var o = acc[ld] || (acc[ld] = { temps: [], precip: 0, syms: [] });
+        var det = ts.data.instant.details;
+        if (det && typeof det.air_temperature === 'number') o.temps.push(det.air_temperature);
+        var nx = ts.data.next_1_hours || ts.data.next_6_hours;
+        if (nx) { if (nx.details && nx.details.precipitation_amount) o.precip += nx.details.precipitation_amount; if (nx.summary) o.syms.push(nx.summary.symbol_code); }
+      });
+      var res = {};
+      Object.keys(acc).forEach(function (d) {
+        var v = acc[d]; if (!v.temps.length) return;
+        res[d] = { max: Math.round(Math.max.apply(null, v.temps)), min: Math.round(Math.min.apply(null, v.temps)), precip: v.precip, prefix: dominant(v.syms) };
+      });
+      return res;
+    });
+  }
+
+  var cards = document.querySelectorAll('.weather-grid .wday');
+  if (!cards.length || !window.fetch) return;
+
+  getForecast(VILLA).then(function (villa) {
+    var cache = {}, chain = Promise.resolve();
+    DAYS.forEach(function (cfg, i) {
+      if (i >= cards.length) return;
+      var card = cards[i], date = STAY[i], vf = villa[date];
+      if (vf) {
+        var vm = look(vf.prefix);
+        var t = card.querySelector('.t'); if (t) t.innerHTML = vf.max + ' °C <small>/ ' + vf.min + ' °C</small>';
+        var ic = card.querySelector('.w-ico'); if (ic) ic.innerHTML = '<svg class="icon"><use href="#' + vm.icon + '"></use></svg>';
+        var de = card.querySelector('.desc'); if (de) de.textContent = (cfg.pre || '') + descText(vf.max, vf.prefix, vf.precip);
+      }
+      if (cfg.dest) {
+        var key = cfg.dest.lat + ',' + cfg.dest.lon;
+        chain = chain.then(function () {
+          return (cache[key] || (cache[key] = getForecast(cfg.dest))).then(function (df) {
+            var dd = df[date], del = card.querySelector('.dest');
+            if (dd && del) del.innerHTML = '<b>' + cfg.label + ':</b> ' + dd.max + ' °C · ' + look(dd.prefix).text;
+          }).catch(function () {});
+        });
+      }
+    });
+    var stand = document.getElementById('wx-stand');
+    if (stand) { var now = new Date(); stand.textContent = 'Live von yr.no, zuletzt aktualisiert ' + now.toLocaleString('de-DE', { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' }) + '.'; }
+  }).catch(function () {
+    var stand = document.getElementById('wx-stand');
+    if (stand) stand.textContent = 'Hinweis: Live-Abruf gerade nicht verfügbar – angezeigt werden die zuletzt gespeicherten Werte (Stand 25. 6.).';
+  });
+})();
+</script>
 
 <!-- Umami Analytics (self-hosted auf eigenem Server, cookieless, DSGVO-freundlich) -->
 <script defer src="https://178-104-207-97.sslip.io/script.js" data-website-id="e7532123-5434-44e1-a7ef-6c5d18bed939"></script>
