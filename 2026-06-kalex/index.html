@@ -884,5 +884,21 @@ Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
 
 </div>
 
+<!-- Umami Analytics (self-hosted auf eigenem Server, cookieless, DSGVO-freundlich) -->
+<script defer src="https://178-104-207-97.sslip.io/script.js" data-website-id="e7532123-5434-44e1-a7ef-6c5d18bed939"></script>
+<script>
+  // Klick-Tracking: zählt Klicks auf alle externen Links (Mapy.cz, Webseiten, Tickets, yr.no),
+  // gruppiert nach Ausflug. Keine Cookies, keine personenbezogenen Daten.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="http"]');
+    if (!a || !window.umami) return;
+    var section = a.closest('section');
+    var heading = section && section.querySelector('h2');
+    var ausflug = heading ? heading.textContent.trim().slice(0, 48) : 'Allgemein';
+    var link = (a.textContent || a.href).trim().replace(/\s+/g, ' ').slice(0, 60);
+    window.umami.track('Link-Klick', { ausflug: ausflug, link: link, url: a.href });
+  });
+</script>
+
 </body>
 </html>
