@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="resort">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ausflugstipps von der Villa Rudolf · 26. Juni – 2. Juli 2026</title>
+<meta name="description" content="Ausflüge, Wettervorhersage und praktische Infos für Ihren Aufenthalt in der Villa Rudolf, Svoboda nad Úpou – Riesengebirge (Krkonoše).">
+<meta property="og:title" content="Ausflugstipps von der Villa Rudolf · 26. Juni – 2. Juli 2026">
+<meta property="og:description" content="Sněžka, Festung Stachelberg, Baumwipfelpfad mit Bären, Aquaparks, Sommerrodelbahn und E-Bikes – mit Öffnungszeiten, Preisen und Routen ab der Villa.">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2333493a' d='M3 20L9 8l4 7 2-3 6 8z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Ausflüge Villa Rudolf — Layout und Komponenten ===== */
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.62;
+  font-size:1.02rem;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:880px;margin:0 auto;padding:44px 22px 64px;}
+a{color:var(--accent);}
+b,strong{font-weight:700;}
+
+/* Icons (inline SVG sprite) */
+.icon{
+  width:1.12em;height:1.12em;
+  stroke:currentColor;fill:none;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
+  flex:none;vertical-align:-0.18em;
+}
+
+/* ---------- hero ---------- */
+.hero{margin-bottom:46px;}
+.hero .kicker{
+  font-size:.76rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.2em;
+  color:var(--accent-2);
+}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:var(--display-weight);
+  line-height:1.12;
+  margin:.45em 0 .5em;
+}
+.hero .t1{display:block;font-size:clamp(2.1rem,5.4vw,3rem);}
+.hero .t2{display:block;font-size:clamp(1.15rem,3vw,1.5rem);color:var(--accent-2);margin-top:.2em;}
+.hero .for-guest{
+  font-family:var(--font-display);font-style:italic;
+  font-size:1.12rem;color:var(--accent-2);
+  margin:-4px 0 16px;
+}
+.hero .lede{color:var(--muted);max-width:620px;font-size:1.02rem;text-wrap:pretty;}
+
+/* ---------- Abschnittsüberschriften ---------- */
+.sec{
+  display:flex;align-items:center;gap:13px;
+  margin:52px 0 18px;
+}
+.sec .num{
+  width:2em;height:2em;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.92rem;font-weight:700;
+  font-family:var(--font-body);
+}
+.sec .sec-ico{color:var(--accent-2);width:1.35em;height:1.35em;}
+.sec .sec-text{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.sec .sec-kicker{
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.15em;
+  color:var(--acc,var(--accent-2));
+}
+.sec h2{
+  font-family:var(--font-display);
+  font-weight:var(--display-weight);
+  font-size:1.42rem;line-height:1.25;
+  color:var(--heading);
+}
+
+/* ---------- Karten ---------- */
+.card{
+  background:var(--paper);
+  border:var(--card-border);
+  border-radius:var(--radius);
+  box-shadow:var(--card-shadow);
+  padding:26px 28px;
+  margin-bottom:20px;
+}
+.card > p{text-wrap:pretty;}
+
+/* ---------- Badges ---------- */
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.73rem;font-weight:600;letter-spacing:.02em;
+  padding:4px 12px;border-radius:var(--badge-radius);
+}
+.badge .icon{width:1em;height:1em;}
+.b-sun {background:var(--amber-soft);color:var(--amber);}
+.b-rain{background:var(--rain-soft); color:var(--rain);}
+.b-info{background:var(--ok-soft);   color:var(--ok);}
+.b-warn{background:var(--warn-soft); color:var(--warn);}
+
+/* ---------- Fakten ---------- */
+.facts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px 28px;
+  margin-top:18px;padding-top:16px;
+  border-top:1px solid var(--line);
+}
+.fact{font-size:.91rem;line-height:1.5;}
+.fact .lbl{
+  font-size:.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.11em;
+  color:var(--muted);margin-bottom:3px;
+}
+
+/* ---------- Tipps ---------- */
+.tips{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.tips li{display:flex;gap:10px;font-size:.91rem;}
+.tips li .icon{color:var(--accent-2);margin-top:.2em;}
+
+/* ---------- Routen / Hinweisboxen ---------- */
+.routes{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.routes .r{
+  background:var(--ok-soft);
+  border-radius:var(--radius-sm);
+  padding:12px 16px;font-size:.9rem;
+}
+.routes .r b{color:var(--ok);}
+
+/* ---------- Links ---------- */
+.links{
+  display:flex;flex-wrap:wrap;gap:9px 22px;
+  margin-top:18px;padding-top:14px;
+  border-top:1px solid var(--line);
+  font-size:.88rem;
+}
+.links a{
+  display:inline-flex;align-items:center;gap:7px;
+  font-weight:600;text-decoration:none;color:var(--accent);
+  white-space:nowrap;
+}
+.links a:hover{text-decoration:underline;}
+.links .icon{color:var(--accent-2);}
+
+/* ---------- Wetter ---------- */
+.weather-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+.wday{
+  background:var(--paper);
+  border:var(--card-border);
+  border-radius:var(--radius);
+  box-shadow:var(--card-shadow);
+  padding:20px 18px 16px;
+  text-align:center;
+}
+.wday .d{font-weight:700;color:var(--accent);font-size:.95rem;}
+.wday .w-ico{display:flex;justify-content:center;gap:4px;margin:10px 0 8px;color:var(--accent-2);}
+.wday .w-ico .icon{width:2.1em;height:2.1em;stroke-width:1.5;}
+.wday .w-ico .arrow{align-self:center;color:var(--muted);width:1.1em;height:1.1em;}
+.wday .loc{
+  font-size:.66rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--muted);margin-bottom:1px;
+}
+.wday .t{font-size:1.3rem;font-weight:700;}
+.wday .t small{font-size:.72em;font-weight:600;color:var(--muted);}
+.wday .desc{font-size:.84rem;color:var(--muted);margin-top:6px;text-wrap:pretty;}
+.wday .dest{
+  font-size:.78rem;color:var(--muted);
+  margin-top:12px;padding-top:10px;
+  border-top:1px dashed var(--line);
+}
+.wday .dest b{color:var(--accent);}
+.wday .dest + .dest{margin-top:4px;padding-top:0;border-top:none;}
+.wnote{font-size:.82rem;color:var(--muted);margin-top:12px;text-wrap:pretty;}
+.wnote a{color:var(--accent);font-weight:600;}
+
+/* ---------- Tagesplan ---------- */
+.plan{margin-top:18px;}
+.plan-h{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;color:var(--heading);
+  margin-bottom:8px;
+}
+.plan-h .icon{color:var(--accent-2);}
+.plan-row{
+  display:grid;grid-template-columns:120px 1fr;gap:14px;
+  padding:10px 0;border-top:1px solid var(--line);
+  font-size:.93rem;
+}
+.plan-day{font-weight:700;color:var(--accent);}
+
+/* ---------- Karte ---------- */
+.mapbox{padding:20px;}
+.mapbox svg{width:100%;height:auto;display:block;}
+.maplegend{font-size:.78rem;color:var(--muted);margin-top:12px;text-align:center;}
+svg .m-land{fill:var(--map-land);}
+svg .m-foreign{fill:var(--map-foreign);}
+svg .m-border{fill:none;stroke:var(--map-border);stroke-width:2;stroke-dasharray:7 5;}
+svg .m-path{fill:none;stroke:var(--map-path);stroke-width:3;stroke-linecap:round;}
+svg .m-peak{fill:var(--map-peak);}
+svg .m-country{font-size:14px;font-weight:700;letter-spacing:.12em;fill:var(--muted);}
+svg .m-name{font-size:13px;font-weight:700;fill:var(--ink);}
+svg .m-dot{fill:var(--accent);}
+svg .m-villa{fill:var(--warn);}
+svg .m-villa-lbl{font-size:13.5px;font-weight:700;fill:var(--warn);}
+svg .m-sub{font-size:10.5px;fill:var(--muted);}
+svg .m-peak-lbl{font-size:11px;fill:var(--muted);}
+svg text{font-family:var(--font-body);}
+
+/* ---------- Hinweis zu Ausweisen ---------- */
+.docnote{
+  display:flex;gap:13px;
+  background:var(--amber-soft);
+  border-radius:var(--radius-sm);
+  padding:16px 18px;margin-top:18px;
+  font-size:.89rem;
+}
+.docnote .icon{color:var(--amber);width:1.35em;height:1.35em;margin-top:.15em;}
+.docnote b{color:var(--amber);}
+
+/* ---------- Fußzeile ---------- */
+footer{
+  margin-top:56px;padding-top:20px;
+  border-top:1px solid var(--line);
+  font-size:.78rem;color:var(--muted);
+  text-align:center;text-wrap:pretty;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:680px){
+  .wrap{padding:30px 16px 50px;}
+  .weather-grid{grid-template-columns:1fr 1fr;}
+  .card{padding:20px 18px;}
+  .plan-row{grid-template-columns:1fr;gap:2px;}
+  .sec{margin:40px 0 14px;}
+}
+
+/* ---------- Druck ---------- */
+@media print{
+  :root{--bg:#fff;--card-shadow:none;}
+  html{font-size:12pt;}
+  body{background:#fff;}
+  .wrap{max-width:none;padding:0;}
+  .card,.wday{box-shadow:none;border:1px solid var(--line);}
+  .card,.wday,.plan,.mapbox,.docnote{break-inside:avoid;}
+  .sec{break-after:avoid;}
+  .hero{margin-bottom:28px;}
+  a{text-decoration:none;color:var(--ink);}
+  .links a{color:var(--accent);}
+}
+
+/* ===== Thema Resort — eleganter Bergresort (Serif, gedämpfte Erdtöne) ===== */
+html[data-theme="resort"]{
+  --font-display:"Spectral",Georgia,serif;
+  --font-body:"Instrument Sans",system-ui,sans-serif;
+  --display-weight:500;
+
+  --bg:#f3efe5;
+  --paper:#fbf9f3;
+  --ink:#2c302b;
+  --heading:#33493a;
+  --muted:#73786d;
+  --accent:#33493a;
+  --accent-2:#92703c;
+  --line:#ded6c2;
+
+  --ok:#42604c;        --ok-soft:#e9ece1;
+  --rain:#48708c;      --rain-soft:#e5ecf1;
+  --amber:#92703c;     --amber-soft:#f2e9d8;
+  --warn:#9c4234;      --warn-soft:#f3e3df;
+
+  --radius:6px;--radius-sm:5px;--badge-radius:3px;
+  --card-border:1px solid var(--line);
+  --card-shadow:none;
+
+  --map-land:#ece7d8;
+  --map-foreign:#e2e2d6;
+  --map-border:#a9a48d;
+  --map-path:#cfc6ad;
+  --map-peak:#aab59f;
+}
+html[data-theme="resort"] .hero{
+  text-align:center;
+  border-top:1px solid var(--accent-2);
+  border-bottom:1px solid var(--line);
+  padding:34px 10px 36px;
+}
+html[data-theme="resort"] .hero .lede{margin:0 auto;}
+html[data-theme="resort"] .hero h1{letter-spacing:.01em;}
+html[data-theme="resort"] .sec .num{
+  border:1px solid var(--accent);color:var(--accent);
+  border-radius:50%;background:transparent;
+}
+html[data-theme="resort"] .badge{
+  background:transparent;border:1px solid currentColor;
+}
+@media (max-width:680px){
+  html[data-theme="resort"] .hero{padding:26px 6px 28px;}
+}
+
+/* ---- Farbliche Unterscheidung der einzelnen Ausflüge (--acc auf <section class="trip">) ---- */
+section.trip{--acc:var(--accent);}
+html[data-theme] section.trip .sec .num{
+  background:var(--acc);border:none;color:#fff;border-radius:50%;
+}
+html[data-theme] section.trip .sec .sec-ico{color:var(--acc);}
+html[data-theme] section.trip .card{border-top:3px solid var(--acc);}
+html[data-theme] section.trip .tips li .icon{color:var(--acc);}
+html[data-theme] section.trip .links .icon{color:var(--acc);}
+</style>
+</head>
+<body>
+
+<!-- Icon-Set -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></symbol>
+  <symbol id="i-cloud-rain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16.6A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path><path d="M16 13v5"></path><path d="M8 13v5"></path><path d="M12 15v5"></path></symbol>
+  <symbol id="i-cloud-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></symbol>
+  <symbol id="i-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m16.2 7.8-2 6.3-6.3 2 2-6.3z"></path></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></symbol>
+  <symbol id="i-fort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 20v-9H2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2Z"></path><path d="M18 11V4H6v7"></path><path d="M15 22v-4a3 3 0 0 0-6 0v4"></path><path d="M22 11V9"></path><path d="M2 11V9"></path><path d="M6 4V2"></path><path d="M18 4V2"></path><path d="M10 4V2"></path><path d="M14 4V2"></path></symbol>
+  <symbol id="i-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"></path><path d="M12 22v-3"></path></symbol>
+  <symbol id="i-waves" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></symbol>
+  <symbol id="i-bike" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18.5" cy="17.5" r="3.5"></circle><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="15" cy="5" r="1"></circle><path d="M12 17.5V14l-3-3 4-3 2 3h2"></path></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-5"></path><path d="M12 8h.01"></path></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"></circle><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"></path><circle cx="18" cy="5" r="2"></circle></symbol>
+  <symbol id="i-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"></circle><circle cx="18" cy="8" r="2"></circle><circle cx="20" cy="16" r="2"></circle><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"></path></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><circle cx="8" cy="11" r="2"></circle><path d="M13 9h6"></path><path d="M13 13h4"></path><path d="M5 16h6"></path></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 7v5l3 2"></path></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+</svg>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">Villa Rudolf · Svoboda nad Úpou · Riesengebirge (Krkonoše)</p>
+  <h1><span class="t1">Ausflugstipps</span> <span class="t2">26. Juni – 2. Juli 2026</span></h1>
+  <p class="for-guest">zusammengestellt für Frau Elisa Kalex und ihre Gruppe</p>
+  <p class="lede">Liebe Frau Kalex, liebe Gäste, wir haben für Sie und Ihre Gruppe die schönsten Ausflüge
+  der Umgebung zusammengestellt – mit Öffnungszeiten, Preisen, Links und Wettervorhersage, damit Sie
+  jeden Tag nach Lust, Laune und Wetter planen können. Vieles ist auf eine aktive Gruppe mit Jugendlichen
+  zugeschnitten: der höchste Berg Tschechiens, Aquaparks, eine Sommerrodelbahn und E-Bike-Touren.</p>
+</header>
+
+<!-- ======================= WETTER ======================= -->
+<section>
+<div class="sec">
+  <svg class="icon sec-ico"><use href="#i-sun"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Freitag bis Donnerstag</p>
+    <h2>Wettervorhersage für Ihren Aufenthalt</h2>
+  </div>
+</div>
+<div class="weather-grid">
+  <div class="wday">
+    <div class="d">Fr 26. 6.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-sun"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">31 °C <small>/ 22 °C</small></div>
+    <p class="desc">Anreisetag: heiß und überwiegend sonnig, abends evtl. ein kurzer Schauer.</p>
+    <div class="dest"><b>Janské Lázně:</b> 31 °C · sonnig</div>
+  </div>
+  <div class="wday">
+    <div class="d">Sa 27. 6.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-sun"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">33 °C <small>/ 22 °C</small></div>
+    <p class="desc">Hochsommer: strahlend sonnig und heiß, kein Regen. Bester Tag für die Sněžka.</p>
+    <div class="dest"><b>Sněžka (Gipfel):</b> 26 °C · klar, leichter Wind</div>
+  </div>
+  <div class="wday">
+    <div class="d">So 28. 6.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-sun"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">34 °C <small>/ 23 °C</small></div>
+    <p class="desc">Heißester Tag, wolkenlos – perfekt zum Abkühlen im Wasser.</p>
+    <div class="dest"><b>Vrchlabí:</b> 34 °C · sonnig</div>
+  </div>
+  <div class="wday">
+    <div class="d">Mo 29. 6.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-cloud-sun"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">34 °C <small>/ 23 °C</small></div>
+    <p class="desc">Weiter heiß, am Nachmittag vereinzelt Schauer oder Gewitter möglich.</p>
+    <div class="dest"><b>Janské Lázně:</b> 34 °C · später Schauer</div>
+  </div>
+  <div class="wday">
+    <div class="d">Di 30. 6.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-cloud-rain"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">26 °C <small>/ 20 °C</small></div>
+    <p class="desc">Wetterumschwung: kühler, zeitweise kräftiger Regen – idealer Tag für drinnen.</p>
+    <div class="dest"><b>Stachelberg:</b> 26 °C · Regen (untertage egal)</div>
+  </div>
+  <div class="wday">
+    <div class="d">Mi 1. 7.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-cloud-rain"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">18 °C <small>/ 14 °C</small></div>
+    <p class="desc">Kühl und regnerisch – guter Tag für Glashütte oder Aquacentrum.</p>
+    <div class="dest"><b>Harrachov:</b> 17 °C · Regen</div>
+  </div>
+  <div class="wday">
+    <div class="d">Do 2. 7.</div>
+    <div class="w-ico"><svg class="icon"><use href="#i-cloud"></use></svg></div>
+    <div class="loc">Villa Rudolf</div>
+    <div class="t">20 °C <small>/ 14 °C</small></div>
+    <p class="desc">Abreisetag: wechselhaft, vereinzelt leichte Schauer.</p>
+    <div class="dest">Gute Heimreise!</div>
+  </div>
+</div>
+<p class="wnote">Vorhersage von yr.no (Norwegisches Meteorologisches Institut) für die genauen Koordinaten der Villa
+und der einzelnen Ziele; Temperaturen = Tageshöchst-/-tiefstwert (6–22 Uhr), abgerufen am 25. 6.
+Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.62545,15.8136">Villa Rudolf</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.7359,15.7400">Sněžka</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.63,15.783">Janské Lázně</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.6264,15.6094">Vrchlabí</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.7766,15.7546">Karpacz</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.771,15.4296">Harrachov</a> ·
+<a target="_blank" rel="noopener" href="https://www.yr.no/en/forecast/daily-table/50.6936,15.7344">Pec pod Sněžkou</a>.</p>
+
+<div class="card plan">
+  <div class="plan-h"><svg class="icon"><use href="#i-route"></use></svg><b>Empfohlene Tagesaufteilung</b></div>
+  <div class="plan-row"><span class="plan-day">Fr 26. 6.</span><span>Anreise; nachmittags ankommen, Spaziergang nach Janské Lázně (Kolonnade, Eis).</span></div>
+  <div class="plan-row"><span class="plan-day">Sa 27. 6.</span><span>Klarer Tag → Sněžka: Seilbahn ab Pec pod Sněžkou oder zu Fuß. Früh starten (Andrang)!</span></div>
+  <div class="plan-row"><span class="plan-day">So 28. 6.</span><span>Heißester Tag → Aquapark Vrchlabí oder Karpacz zum Abkühlen.</span></div>
+  <div class="plan-row"><span class="plan-day">Mo 29. 6.</span><span>Vormittags Baumwipfelpfad &amp; Bären; nachmittags Sommerrodelbahn Pec oder E-Bike-Tour (vor den Schauern).</span></div>
+  <div class="plan-row"><span class="plan-day">Di 30. 6.</span><span>Regentag → Festung Stachelberg (untertage, Regen egal).</span></div>
+  <div class="plan-row"><span class="plan-day">Mi 1. 7.</span><span>Kühl/Regen → Glashütte Harrachov (bei Aufklaren Mumlava-Wasserfälle) oder Aquacentrum.</span></div>
+  <div class="plan-row"><span class="plan-day">Do 2. 7.</span><span>Abreise.</span></div>
+</div>
+</section>
+
+<!-- ======================= KARTE ======================= -->
+<section>
+<div class="sec">
+  <svg class="icon sec-ico"><use href="#i-compass"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Entfernungen von der Villa</p>
+    <h2>Orientierungskarte der Umgebung</h2>
+  </div>
+</div>
+<div class="card mapbox">
+<svg viewBox="0 0 800 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematische Karte der Umgebung der Villa Rudolf">
+  <rect class="m-land" x="0" y="0" width="800" height="430" rx="12"></rect>
+  <path class="m-foreign" d="M0,95 Q200,60 420,78 Q620,95 800,55 L800,12 Q800,0 788,0 L12,0 Q0,0 0,12 Z"></path>
+  <path class="m-border" d="M0,95 Q200,60 420,78 Q620,95 800,55"></path>
+  <text class="m-country" x="30" y="36">POLEN</text>
+  <text class="m-country" x="30" y="124">TSCHECHIEN · RIESENGEBIRGE</text>
+
+  <path class="m-peak" d="M500,75 l16,-26 l16,26 Z"></path>
+  <text class="m-peak-lbl" x="486" y="62">Sněžka 1603 m</text>
+  <path class="m-peak" d="M408,150 l14,-22 l14,22 Z"></path>
+  <text class="m-peak-lbl" x="372" y="138">Černá hora</text>
+
+  <g class="m-path">
+    <path d="M540,225 Q505,215 470,205"></path>
+    <path d="M540,225 Q590,250 640,272"></path>
+    <path d="M540,225 Q400,255 240,258"></path>
+    <path d="M240,258 Q140,225 80,140"></path>
+    <path d="M540,225 Q575,170 600,120 Q605,95 598,70"></path>
+    <path d="M540,225 Q512,165 516,112"></path>
+  </g>
+
+  <path class="m-villa" d="M540,212 l5,10 11,1.5 -8,8 2,11 -10,-5.5 -10,5.5 2,-11 -8,-8 11,-1.5 Z"></path>
+  <text class="m-villa-lbl" x="554" y="232">Villa Rudolf</text>
+  <text class="m-sub" x="554" y="246">Svoboda nad Úpou</text>
+
+  <circle class="m-dot" cx="516" cy="112" r="6.5"></circle>
+  <text class="m-name" x="530" y="110">Pec pod Sněžkou</text>
+  <text class="m-sub" x="530" y="124">Seilbahn Sněžka · 20 km · 20 Min.</text>
+
+  <circle class="m-dot" cx="470" cy="205" r="6.5"></circle>
+  <text class="m-name" x="394" y="194">Janské Lázně</text>
+  <text class="m-sub" x="372" y="209">Baumwipfelpfad</text>
+  <text class="m-sub" x="396" y="223">zu Fuß ~4 km</text>
+
+  <circle class="m-dot" cx="640" cy="272" r="6.5"></circle>
+  <text class="m-name" x="654" y="270">Stachelberg</text>
+  <text class="m-sub" x="654" y="284">Festung · 10 km · 15 Min.</text>
+
+  <circle class="m-dot" cx="240" cy="258" r="6.5"></circle>
+  <text class="m-name" x="208" y="282">Vrchlabí</text>
+  <text class="m-sub" x="182" y="296">Aquacentrum · 20 km · 25 Min.</text>
+
+  <circle class="m-dot" cx="80" cy="140" r="6.5"></circle>
+  <text class="m-name" x="56" y="124">Harrachov</text>
+  <text class="m-sub" x="40" y="165">Glashütte · 45 km · 50 Min.</text>
+
+  <circle class="m-dot" cx="598" cy="62" r="6.5"></circle>
+  <text class="m-name" x="614" y="60">Karpacz (PL)</text>
+  <text class="m-sub" x="614" y="74">Aquapark Tropikana · 35 km · 45 Min.</text>
+
+  <circle cx="620" cy="330" r="4.5" style="fill:var(--muted)"></circle>
+  <text class="m-sub" x="633" y="334">Trutnov</text>
+</svg>
+<p class="maplegend">Schematische Karte – Entfernungen und Fahrzeiten sind Richtwerte. Genaue Routen über die Mapy.cz-Links bei den einzelnen Ausflügen.</p>
+</div>
+</section>
+
+<!-- ======================= 1 · SNĚŽKA ======================= -->
+<section class="trip" style="--acc:#4f6d7a;">
+<div class="sec">
+  <span class="num">1</span>
+  <svg class="icon sec-ico"><use href="#i-mountain"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">höchster Berg Tschechiens · mit dem Auto 20 Min. nach Pec</p>
+    <h2>Sněžka (1603 m) – mit der Seilbahn oder zu Fuß auf den Gipfel</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-sun"><svg class="icon"><use href="#i-sun"></use></svg><span>Am besten bei klarer Sicht</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-route"></use></svg><span>Gipfel an der Grenze zu Polen</span></span>
+    <span class="badge b-warn"><svg class="icon"><use href="#i-alert"></use></svg><span>Bei Sturm nur bis Růžová hora</span></span>
+  </div>
+  <p>Die moderne Kabinenseilbahn bringt euch in rund 15 Minuten von Pec pod Sněžkou (829 m) über die
+  Zwischenstation Růžová hora hinauf auf die Sněžka (Schneekoppe, 1603 m) – den höchsten Berg Tschechiens.
+  Oben steht ihr direkt auf der tschechisch-polnischen Grenze und könnt frei zu Fuß nach Polen hinüberlaufen.
+  Sportliche Jugendliche können auch zu Fuß aufsteigen (von Pec ca. 2,5–3 Std. oder durch das romantische
+  Obří důl) – ein beliebtes Modell: mit der Bahn hinauf, zu Fuß hinab (oder umgekehrt).</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Öffnungszeiten</div>Hauptsaison (1. 5.–30. 9. 2026) täglich 8:00–19:00; Fahrt zum Gipfel wetterabhängig</div>
+    <div class="fact"><div class="lbl">Preise (gesamte Strecke)</div>Erwachsene Bergfahrt 400 Kč · hin &amp; zurück 750 Kč · Jugendliche 12–17 J. 360 / 680 Kč · <b>Gruppe ab 20 Pers. 680 Kč (hin &amp; zurück) p. P.</b></div>
+    <div class="fact"><div class="lbl">Anfahrt</div>Talstation Pec pod Sněžkou, ~20 km von der Villa (~20 Min.), großer Parkplatz im Ort</div>
+    <div class="fact"><div class="lbl">Kontakt</div>+420 499 405 528</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Im Hochsommer ist die Bahn sehr beliebt und es gibt <b>keine Platzreservierung</b> – fahrt früh (8–10 Uhr) oder nach 15 Uhr.</span></li>
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Gruppe ab 20 Personen: Gruppenticket nur bei gemeinsamer Bezahlung; eine Begleitperson fährt ab 20 Tickets gratis. Am besten vorab unter +420 499 405 528 abstimmen.</span></li>
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Oben ist es deutlich kälter und windiger als im Tal (am Wochenende ~26 °C, oft aber einstellig) – Jacke mitnehmen.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.snezkalanovka.cz/"><svg class="icon"><use href="#i-globe"></use></svg><span>snezkalanovka.cz</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.7341,50.7064&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Route mit dem Auto nach Pec</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 2 · STACHELBERG ======================= -->
+<section class="trip" style="--acc:#7a6840;">
+<div class="sec">
+  <span class="num">2</span>
+  <svg class="icon sec-ico"><use href="#i-fort"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Geschichte &amp; Untertage · mit dem Auto 15 Min.</p>
+    <h2>Festung Stachelberg – Expedition in den Untergrund</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-sun"><svg class="icon"><use href="#i-cloud"></use></svg><span>Auch bei Wolken schön</span></span>
+    <span class="badge b-rain"><svg class="icon"><use href="#i-cloud-rain"></use></svg><span>Untertage stört kein Regen</span></span>
+  </div>
+  <p>Die größte moderne Festung Tschechiens und eine der größten Europas. Euch erwartet ein riesiger
+  Artillerie-Bunker mit Ausstellung zur Vorkriegsbefestigung und vor allem der Abstieg 52 Meter tief in
+  3,5 km unterirdische Gänge (186 Stufen hinunter und wieder hinauf!). Ein starkes Erlebnis für Jugendliche
+  und Erwachsene – die Guides sind Enthusiasten und erzählen mitreißend.</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Öffnungszeiten (Juni)</div>Donnerstag–Sonntag 10:00–17:00</div>
+    <div class="fact"><div class="lbl">Eintritt</div>Erwachsene 200 Kč · Kinder/Jugendliche 6–15 J. 100 Kč · Familie 2+2 500 Kč</div>
+    <div class="fact"><div class="lbl">Anfahrt</div>10 km von der Villa (~15 Min.), eigener Parkplatz 500 m vom Museum</div>
+    <div class="fact"><div class="lbl">Kontakt</div>731 629 531</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Untertage konstant ~8 °C – Pullover/Jacke und feste Schuhe mitnehmen.</span></li>
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Für eine große Gruppe lohnt es sich, die Tickets vorab online zu kaufen und Wartezeit zu vermeiden.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.stachelberg.cz/"><svg class="icon"><use href="#i-globe"></use></svg><span>stachelberg.cz</span></a>
+    <a target="_blank" rel="noopener" href="https://portal.colosseum.eu/Tours?mrsid=382"><svg class="icon"><use href="#i-ticket"></use></svg><span>Tickets online</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.906,50.634&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Route mit dem Auto</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 3 · BAUMWIPFELPFAD ======================= -->
+<section class="trip" style="--acc:#4a7257;">
+<div class="sec">
+  <span class="num">3</span>
+  <svg class="icon sec-ico"><use href="#i-tree"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Natur &amp; Aussicht · zu Fuß von der Villa</p>
+    <h2>Zu Fuß nach Janské Lázně und auf den Baumwipfelpfad</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-sun"><svg class="icon"><use href="#i-cloud-sun"></use></svg><span>Am schönsten bei Trockenheit</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-route"></use></svg><span>Direkt von der Villa, ohne Auto</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-paw"></use></svg><span>Neu mit Bären</span></span>
+  </div>
+  <p>Ein Klassiker direkt von der Villa Rudolf: zu Fuß durch den Wald nach Janské Lázně (~4 km), in der
+  Kolonnade ein Eis oder Kuchen und ein Schluck Quellwasser, dann hinauf zum Baumwipfelpfad (Stezka korunami
+  stromů). Auf dem 1 500 m langen Pfad mit 43-m-Turm gibt es seit diesem April auch den <b>Bärenpfad</b> –
+  von den Stegen aus beobachtet ihr die Braunbären Alice und Michal, die nach 300 Jahren ins Riesengebirge
+  zurückgekehrt sind. Für Nervenkitzel sorgen die Tunnelrutsche im Turm und die hängenden Netze.</p>
+
+  <div class="routes">
+    <div class="r"><b>Weg von der Villa nach Janské Lázně:</b> am besten am Forstinstitut vorbei – dort fahren keine
+    Autos und es geht durch den Wald. Schön ist auch der Weg über Ochomůrka. Beide Routen folgen markierten Wanderwegen.</div>
+    <div class="r"><b>Von der Kolonnade zum Pfad (3 Varianten):</b> ① entlang der Seilbahn auf die Černá hora,
+    ② am Kinderheim vorbei – bequemer Asphaltweg durch den Wald,
+    ③ <b>die schönste:</b> am alten Sprungschanzen-Areal vorbei.</div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><div class="lbl">Öffnungszeiten (Juni)</div>täglich 9:30–19:00, letzter Einlass 1 Std. vor Schluss</div>
+    <div class="fact"><div class="lbl">Eintritt</div>Erwachsene (ab 15 J.) 450 Kč · Kinder 3–14 J. 350 Kč · unter 3 J. gratis · Tunnelrutsche 50 Kč</div>
+    <div class="fact"><div class="lbl">Kontakt</div>499 110 019</div>
+    <div class="fact"><div class="lbl">Zahlung</div>Karte, Bargeld und Benefit-Karten</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Der Pfad ist barrierefrei; Tickets gibt es auch vor Ort, am Wochenende lohnt der E-Shop.</span></li>
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Für die ganze Gruppe die Tickets vorab online kaufen – das spart am Wochenende die Schlange.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://treetop-walks.com/krkonose/"><svg class="icon"><use href="#i-globe"></use></svg><span>treetop-walks.com/krkonose</span></a>
+    <a target="_blank" rel="noopener" href="https://eshop.stezkakrkonose.cz/cz/"><svg class="icon"><use href="#i-ticket"></use></svg><span>Ticket-Shop</span></a>
+    <a target="_blank" rel="noopener" href="https://treetop-walks.com/krkonose/medvedi-stezka-krkonose/"><svg class="icon"><use href="#i-paw"></use></svg><span>Bärenpfad</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.7912,50.6287&routeType=foot_hiking"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – zu Fuß von der Villa</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 4 · HALLENBAD JL ======================= -->
+<section class="trip" style="--acc:#44786d;">
+<div class="sec">
+  <span class="num">4</span>
+  <svg class="icon sec-ico"><use href="#i-waves"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Wellness im Kurort · zu Fuß von der Villa</p>
+    <h2>Hallenbad in Janské Lázně (Aquacentrum)</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-rain"><svg class="icon"><use href="#i-cloud-rain"></use></svg><span>Ideal bei Regen</span></span>
+    <span class="badge b-warn"><svg class="icon"><use href="#i-clock"></use></svg><span>Eingeschränkte Zeiten für die Öffentlichkeit</span></span>
+  </div>
+  <p>Kurbad mit Mineralquellwasser (27 °C), Innen- und Außenwhirlpools, Gegenstromanlage, Massageliegen
+  und Saunawelt. Ein schöner Abschluss eines Spaziergangs – direkt hinter dem Kurhaus an der Kolonnade.</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Für die Öffentlichkeit</div>Mo–Fr 16:00–21:00 · Sa–So 13:00–21:00</div>
+    <div class="fact"><div class="lbl">Eintritt (Bad)</div>Standard 240 Kč · ermäßigt 190 Kč · Familie 610 Kč</div>
+    <div class="fact"><div class="lbl">Bad + Sauna</div>Erwachsene 400 Kč · Kinder 3–14 J. 320 Kč · Familie 2+2 1 300 Kč</div>
+    <div class="fact"><div class="lbl">Kontakt</div>499 860 301</div>
+  </div>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.janskelazne.com/aquacentrum/"><svg class="icon"><use href="#i-globe"></use></svg><span>janskelazne.com/aquacentrum</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.7805,50.6315&routeType=foot_hiking"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – zu Fuß von der Villa</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 5 · VRCHLABÍ ======================= -->
+<section class="trip" style="--acc:#4a708e;">
+<div class="sec">
+  <span class="num">5</span>
+  <svg class="icon sec-ico"><use href="#i-waves"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Schwimmen &amp; Rutschen · mit dem Auto 25 Min.</p>
+    <h2>Aquacentrum Vrchlabí</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-rain"><svg class="icon"><use href="#i-cloud-rain"></use></svg><span>Ideal bei Regen</span></span>
+    <span class="badge b-warn"><svg class="icon"><use href="#i-alert"></use></svg><span>Vor Abfahrt Auslastung online prüfen</span></span>
+  </div>
+  <p>Modernes Bäderzentrum (eröffnet 2022): 25-m-Sportbecken, Erlebnisbecken (32 °C), Wildwasserkanal,
+  60-m-Tunnelrutsche mit Dunkelfahrt, Innen- und Außenwhirlpool und Dampfkabine. Im Areal das Restaurant Kotva.</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Wichtig</div>Die Website zeigt die <b>aktuelle Auslastung in Echtzeit</b> (Kapazität 141 Personen) – vor der Fahrt prüfen, damit ihr nicht umsonst kommt.</div>
+    <div class="fact"><div class="lbl">Eintritt (Richtwert)</div>erste 75 Min. 165 Kč, danach 1,20 Kč/Min., Tagesmaximum 290 Kč (aktueller Tarif auf der Website)</div>
+    <div class="fact"><div class="lbl">Anfahrt</div>20 km von der Villa (~25 Min.), Valteřická-Straße, Parkplatz am Areal</div>
+    <div class="fact"><div class="lbl">Kontakt</div>604 456 895</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Bei 22 Personen unbedingt die Live-Auslastung checken – die Kapazität ist begrenzt; an heißen Tagen ggf. auf Karpacz ausweichen.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.aquacentrum-vrchlabi.cz/"><svg class="icon"><use href="#i-globe"></use></svg><span>aquacentrum-vrchlabi.cz (Auslastung live)</span></a>
+    <a target="_blank" rel="noopener" href="https://www.aquacentrum-vrchlabi.cz/provozni-doba-a-ceny"><svg class="icon"><use href="#i-clock"></use></svg><span>Öffnungszeiten &amp; Preise</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.6094,50.6264&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Route mit dem Auto</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 6 · KARPACZ ======================= -->
+<section class="trip" style="--acc:#5d6890;">
+<div class="sec">
+  <span class="num">6</span>
+  <svg class="icon sec-ico"><use href="#i-waves"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Aquapark im Ausland · mit dem Auto 45 Min.</p>
+    <h2>Aquapark Tropikana – Hotel Gołębiewski, Karpacz (PL)</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-rain"><svg class="icon"><use href="#i-cloud-rain"></use></svg><span>Ideal bei Regen</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-route"></use></svg><span>Ausflug nach Polen über Pomezní Boudy</span></span>
+  </div>
+  <p>Großer Hotel-Aquapark kurz hinter der Grenze: Wellenbecken, 25-m-Becken, „Zwiebel" und dreibahnige
+  Rutsche, warmes Kinderplanschbecken (36 °C), 8 Whirlpools, Salz- und Eisgrotte sowie Saunen. Die Fahrt
+  führt über Horní Maršov und Pomezní Boudy mit schönen Ausblicken (~45 Min.). Für eine große Gruppe an heißen
+  oder verregneten Tagen ein verlässliches Ziel – und in Karpacz regnet es laut Vorhersage oft weniger als
+  auf der tschechischen Seite.</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Öffnungszeiten</div>Mo–Fr 11:00–21:00 · Sa–So 9:00–21:00</div>
+    <div class="fact"><div class="lbl">Eintritt (Wochenende)</div>Erwachsene 80 zł / 1,5 Std. (ab 16:00 100 zł) · Kinder bis 14 J. −50 % · +20 zł je weitere halbe Std. · Handtuch inkl.</div>
+    <div class="fact"><div class="lbl">Achtung</div>Kinder bis 14 J. nur in Begleitung Erwachsener; Zahlung in Złoty (Karte OK)</div>
+    <div class="fact"><div class="lbl">Kontakt</div>+48 75 76 70 780 · Karkonoska 14, Karpacz</div>
+  </div>
+  <div class="docnote">
+    <svg class="icon"><use href="#i-card"></use></svg>
+    <div><b>Ausweise für alle – auch für die Jugendlichen:</b> Nach Polen reist man üblicherweise „mit dem
+    Personalausweis" und es gibt keine Grenzkontrollen. Formal gilt aber, dass <b>jede reisende Person –
+    auch jeder Jugendliche – ein eigenes Ausweisdokument</b> (Personalausweis oder Reisepass) dabeihaben soll.
+    Bei 10 Minderjährigen in der Gruppe achtet bitte darauf, dass jeder seinen Ausweis mitnimmt. Stichproben­kontrollen
+    sind unwahrscheinlich, aber möglich; wer gar kein Dokument dabei hat, weicht sicherheitshalber auf Vrchlabí
+    oder das Hallenbad in Janské Lázně aus.</div>
+  </div>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.golebiewski.pl/cz/karpacz/aquapark-cz"><svg class="icon"><use href="#i-globe"></use></svg><span>golebiewski.pl – Tropikana</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.7286,50.7790&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Route mit dem Auto</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 7 · GLASHÜTTE + MUMLAVA ======================= -->
+<section class="trip" style="--acc:#a05c30;">
+<div class="sec">
+  <span class="num">7</span>
+  <svg class="icon sec-ico"><use href="#i-flame"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Handwerk &amp; Wasserfälle · mit dem Auto 50 Min.</p>
+    <h2>Glashütte Harrachov &amp; Mumlava-Wasserfälle</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-rain"><svg class="icon"><use href="#i-cloud-rain"></use></svg><span>Super auch bei schlechtem Wetter</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-info"></use></svg><span>Führungen mit Erklärung</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-droplet"></use></svg><span>Wasserfälle gleich nebenan</span></span>
+  </div>
+  <p>Die älteste noch arbeitende Glashütte Tschechiens (vor 1712). Bei der 45-minütigen Führung seht ihr das
+  Schmelzen und Blasen von Glas an den Öfen aus nächster Nähe – drinnen ist es angenehm warm, also ideal bei
+  schlechtem Wetter – dazu die einzigartige historische Schleiferei von 1895, die bis heute eine Wasserturbine
+  antreibt. Im Preis inbegriffen ist das Glasmuseum mit 5 000 Exponaten; im Areal eine Brauereigaststätte.</p>
+
+  <div class="routes">
+    <div class="r"><b>Mumlava-Wasserfälle (kostenlos):</b> Nur wenige Minuten entfernt stürzt die Mumlava über
+    ~10 m hohe Granitstufen mit markanten Strudellöchern. Vom Ort Harrachov führt ein leichter, befestigter Weg
+    (~1,3 km, 20–30 Min.) am Fluss entlang zum Hauptwasserfall – perfekt zum Kombinieren mit der Glashütte.
+    Festes Schuhwerk empfohlen (Steine am Wasser können nass und rutschig sein).</div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><div class="lbl">Führungen</div>täglich 8:00–15:00 · Dauer 45 Minuten</div>
+    <div class="fact"><div class="lbl">Eintritt</div>Erwachsene 250 Kč · Kinder/Jugendliche 6–17 J. 100 Kč · unter 6 J. gratis · Familie 2+2 600 Kč</div>
+    <div class="fact"><div class="lbl">Wasserfälle</div>frei zugänglich, kostenlos, ganztägig</div>
+    <div class="fact"><div class="lbl">Anfahrt &amp; Kontakt</div>45 km von der Villa (~50 Min.) · 481 528 141</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Gruppen-Führungen unbedingt vorab anmelden (turistik@sklarnaharrachov.cz / 481 528 141) – Gruppen starten zu festen Zeiten, also rechtzeitig kommen.</span></li>
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Die Hütten arbeiten morgens – frühe Führungen sind am lebendigsten.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://sklarnaharrachov.cz/sklarna/exkurze"><svg class="icon"><use href="#i-globe"></use></svg><span>sklarnaharrachov.cz – Führungen</span></a>
+    <a target="_blank" rel="noopener" href="https://www.region-krkonose.cz/zajimava-mista/mumlavske-vodopady/"><svg class="icon"><use href="#i-droplet"></use></svg><span>Mumlava-Wasserfälle</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.4296,50.7710&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Route mit dem Auto</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 8 · BOBBAHN PEC ======================= -->
+<section class="trip" style="--acc:#9e5242;">
+<div class="sec">
+  <span class="num">8</span>
+  <svg class="icon sec-ico"><use href="#i-zap"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Adrenalin · mit dem Auto 20 Min.</p>
+    <h2>Sommerrodelbahn Relaxpark Pec pod Sněžkou</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-info"><svg class="icon"><use href="#i-zap"></use></svg><span>Bis 40 km/h</span></span>
+    <span class="badge b-rain"><svg class="icon"><use href="#i-cloud-rain"></use></svg><span>Fährt bei jedem Wetter</span></span>
+    <span class="badge b-sun"><svg class="icon"><use href="#i-cloud"></use></svg><span>Ganzjährig</span></span>
+  </div>
+  <p>Die nächstgelegene echte Bobbahn – nur ~20 Autominuten entfernt – und ein echter Adrenalin-Tipp für
+  Teenager. Die ganzjährig befahrbare Edelstahlbahn ist 900 m lang, führt teils bis zu 8 m über dem Boden,
+  und die Zweisitzer-Schlitten erreichen bis zu 40 km/h. Die Wagen sind fest mit der Schiene verbunden und
+  alle mit Sicherheitsgurt gesichert – gefahren wird bei jedem Wetter. Ab 8 Jahren darf man allein fahren.</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Öffnungszeiten (Sommer)</div>Juni täglich 9:00–18:00 · Juli/August 9:00–20:00</div>
+    <div class="fact"><div class="lbl">Preise</div>Einzelfahrt ~160–210 Kč (über 140 cm) · Mehrfachkarten günstiger: 6 Fahrten ~880 Kč, 10 Fahrten ~1 300 Kč</div>
+    <div class="fact"><div class="lbl">Anfahrt</div>Pec pod Sněžkou, ~20 km (~20 Min.); Parkplatz P3 „Kaplička u přehrady"</div>
+    <div class="fact"><div class="lbl">Kontakt</div>+420 739 335 466</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Für die Gruppe lohnen sich die 6er-/10er-Mehrfachkarten klar. Hinweis: Zwei Erwachsene dürfen nicht zusammen in einem Schlitten sitzen.</span></li>
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Lässt sich gut mit der Seilbahn auf die Sněžka verbinden – beides ist in Pec pod Sněžkou.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://www.relaxpark.cz/"><svg class="icon"><use href="#i-globe"></use></svg><span>relaxpark.cz</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.7346,50.6985&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Route mit dem Auto</span></a>
+  </div>
+</div>
+</section>
+
+<!-- ======================= 9 · E-BIKES ======================= -->
+<section class="trip" style="--acc:#5e7a40;">
+<div class="sec">
+  <span class="num">9</span>
+  <svg class="icon sec-ico"><use href="#i-bike"></use></svg>
+  <div class="sec-text">
+    <p class="sec-kicker">Aktiv unterwegs · ab Janské Lázně</p>
+    <h2>E-Bikes &amp; Radfahren im Riesengebirge</h2>
+  </div>
+</div>
+<div class="card">
+  <div class="badges">
+    <span class="badge b-sun"><svg class="icon"><use href="#i-cloud-sun"></use></svg><span>Am besten bei trockenem Wetter</span></span>
+    <span class="badge b-info"><svg class="icon"><use href="#i-route"></use></svg><span>Über 900 km markierte Radwege</span></span>
+  </div>
+  <p>Das Riesengebirge ist ein Paradies für Radfahrer: über 900 km markierte Radwege, von gemütlichen
+  Tal-Touren entlang der Úpa bis zu anspruchsvollen Kamm-Routen. Mit E-Bikes schaffen auch 15- bis
+  17-Jährige lange Strecken und steile Anstiege spielend – so bleibt die ganze Gruppe zusammen. Unsere
+  Empfehlung als Startpunkt: die Verleihstation SkiResort Live an der Talstation der Seilbahn Černá hora in
+  Janské Lázně (moderne SCOTT-E-Mountainbikes für Erwachsene und Junior-Modelle, Online-Reservierung, sogar
+  Lieferung der Räder zur Unterkunft).</p>
+  <div class="facts">
+    <div class="fact"><div class="lbl">Öffnungszeiten</div>Juni täglich 9:00–17:00 · Juli/August 9:00–18:00</div>
+    <div class="fact"><div class="lbl">Preise/Tag (online / vor Ort)</div>Junior-E-Bike 590 / 790 Kč · E-Bike Hardtail 1 250 / 1 390 Kč · Fully 1 590 / 1 790 Kč</div>
+    <div class="fact"><div class="lbl">Anfahrt</div>Talstation Černá hora, Janské Lázně (~6 km); Lieferung zur Unterkunft möglich</div>
+    <div class="fact"><div class="lbl">Kontakt</div>+420 734 153 153</div>
+  </div>
+  <ul class="tips">
+    <li><svg class="icon"><use href="#i-users"></use></svg><span>Bei 22 Personen mehrere Wochen vorab reservieren und die Stückzahl (Erwachsenen-/Junior-Räder) abstimmen; ggf. auf zwei Verleiher in Janské Lázně aufteilen. Nach Gruppenkonditionen fragen.</span></li>
+    <li><svg class="icon"><use href="#i-bulb"></use></svg><span>Mit den „Krkonošské cyklobusy" (Juli/August täglich) lassen sich Einweg-Touren planen – sie nehmen Räder mit und bedienen u. a. Svoboda nad Úpou und Pec.</span></li>
+  </ul>
+  <div class="links">
+    <a target="_blank" rel="noopener" href="https://leto.skiresort.cz/letni-aktivity/elektrokola/"><svg class="icon"><use href="#i-globe"></use></svg><span>leto.skiresort.cz – E-Bikes</span></a>
+    <a target="_blank" rel="noopener" href="https://mapy.com/fnc/v1/route?mapset=outdoor&start=15.8136,50.62545&end=15.7621,50.6388&routeType=car_fast_traffic"><svg class="icon"><use href="#i-pin"></use></svg><span>Mapy.cz – Verleih Janské Lázně</span></a>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p>Zusammengestellt in der Villa Rudolf für Frau Elisa Kalex und ihre Gruppe · villarudolf.com ·
+  Informationen am 25. 6. 2026 von den offiziellen Websites geprüft (snezkalanovka.cz, stachelberg.cz,
+  treetop-walks.com, janskelazne.com, aquacentrum-vrchlabi.cz, golebiewski.pl, sklarnaharrachov.cz,
+  relaxpark.cz, skiresort.cz) · Wettervorhersage: yr.no.</p>
+  <p>Öffnungszeiten und Preise können sich ändern – bitte vor der Fahrt kurz die Links oben prüfen.
+  Preise in tschechischen Kronen (Kč) bzw. polnischen Złoty (zł); 1 € ≈ 25 Kč ≈ 4,3 zł.
+  Wir wünschen Ihnen wunderschöne Ausflüge!</p>
+</footer>
+
+</div>
+
+</body>
+</html>
