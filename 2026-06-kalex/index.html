@@ -903,32 +903,34 @@ Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
 
   function addDay(d) { var t = new Date(d + 'T00:00:00Z'); t.setUTCDate(t.getUTCDate() + 1); return t.toISOString().slice(0, 10); }
 
-  function look(code) {
-    var c = (code || '').replace(/_(day|night|polartwilight)$/, '');
-    if (c.indexOf('thunder') >= 0) return { icon: 'i-cloud-rain', text: 'Gewitter' };
-    if (c.indexOf('sleet') >= 0 || c.indexOf('snow') >= 0) return { icon: 'i-cloud-rain', text: 'Schneeregen' };
-    if (c === 'heavyrain' || c === 'heavyrainshowers') return { icon: 'i-cloud-rain', text: 'kräftiger Regen' };
-    if (c === 'lightrain' || c === 'lightrainshowers') return { icon: 'i-cloud-rain', text: 'leichter Regen' };
-    if (c.indexOf('showers') >= 0) return { icon: 'i-cloud-rain', text: 'Schauer' };
-    if (c.indexOf('rain') >= 0) return { icon: 'i-cloud-rain', text: 'Regen' };
-    if (c === 'clearsky') return { icon: 'i-sun', text: 'sonnig' };
-    if (c === 'fair') return { icon: 'i-cloud-sun', text: 'meist sonnig' };
-    if (c === 'partlycloudy') return { icon: 'i-cloud-sun', text: 'wolkig' };
-    if (c === 'fog') return { icon: 'i-cloud', text: 'Nebel' };
-    if (c === 'cloudy') return { icon: 'i-cloud', text: 'bedeckt' };
-    return { icon: 'i-cloud', text: 'wechselhaft' };
+  // Eine Kategorie steuert Icon, Kurztext und Beschreibung gemeinsam (immer konsistent),
+  // abgeleitet aus dem häufigsten Wettersymbol UND der Tagesniederschlagsmenge.
+  function category(prefix, precip) {
+    var p = prefix || '';
+    if (p.indexOf('thunder') >= 0) return 'thunder';
+    if (p.indexOf('sleet') >= 0 || p.indexOf('snow') >= 0) return 'snow';
+    if (p === 'heavyrain' || p === 'heavyrainshowers' || precip >= 10) return 'heavyrain';
+    if (p.indexOf('rain') >= 0 || p.indexOf('showers') >= 0 || precip >= 3) return 'rain';
+    if (precip > 0.4) return 'showers';
+    if (p === 'clearsky') return 'clear';
+    if (p === 'fair') return 'fair';
+    if (p === 'partlycloudy') return 'partly';
+    if (p === 'fog') return 'fog';
+    return 'cloudy';
   }
-
-  function descText(max, prefix, precip) {
-    var warm = max >= 30 ? 'Heiß' : (max >= 24 ? 'Warm' : (max >= 15 ? 'Mild' : 'Kühl'));
-    var cond;
-    if (precip >= 5 || prefix.indexOf('heavyrain') >= 0) cond = 'zeitweise kräftiger Regen – guter Tag für drinnen';
-    else if (prefix.indexOf('rain') >= 0 || prefix.indexOf('showers') >= 0 || precip > 0.5) cond = 'wechselhaft mit einzelnen Schauern';
-    else if (prefix === 'clearsky' || prefix === 'fair') cond = 'sonnig und trocken';
-    else if (prefix === 'partlycloudy') cond = 'teils sonnig, teils wolkig';
-    else cond = 'meist bewölkt, überwiegend trocken';
-    return warm + ', ' + cond + '.';
-  }
+  var CAT = {
+    thunder:   { icon: 'i-cloud-rain', text: 'Gewitter',         desc: 'Gewitter möglich – guter Tag für drinnen' },
+    snow:      { icon: 'i-cloud-rain', text: 'Schneeregen',      desc: 'Schneeregen möglich' },
+    heavyrain: { icon: 'i-cloud-rain', text: 'kräftiger Regen',  desc: 'zeitweise kräftiger Regen – guter Tag für drinnen' },
+    rain:      { icon: 'i-cloud-rain', text: 'Regen',            desc: 'wechselhaft mit Schauern' },
+    showers:   { icon: 'i-cloud-sun',  text: 'einzelne Schauer', desc: 'überwiegend trocken, vereinzelt Schauer möglich' },
+    clear:     { icon: 'i-sun',        text: 'sonnig',           desc: 'sonnig und trocken' },
+    fair:      { icon: 'i-cloud-sun',  text: 'meist sonnig',     desc: 'meist sonnig und trocken' },
+    partly:    { icon: 'i-cloud-sun',  text: 'wolkig',           desc: 'teils sonnig, teils wolkig' },
+    fog:       { icon: 'i-cloud',      text: 'Nebel',            desc: 'neblig, meist trocken' },
+    cloudy:    { icon: 'i-cloud',      text: 'bedeckt',          desc: 'meist bewölkt, überwiegend trocken' }
+  };
+  function warm(max) { return max >= 30 ? 'Heiß' : (max >= 24 ? 'Warm' : (max >= 15 ? 'Mild' : 'Kühl')); }
 
   function dominant(syms) {
     var n = {}, best = '', bc = 0;
@@ -968,17 +970,17 @@ Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
       if (i >= cards.length) return;
       var card = cards[i], date = STAY[i], vf = villa[date];
       if (vf) {
-        var vm = look(vf.prefix);
+        var vc = CAT[category(vf.prefix, vf.precip)];
         var t = card.querySelector('.t'); if (t) t.innerHTML = vf.max + ' °C <small>/ ' + vf.min + ' °C</small>';
-        var ic = card.querySelector('.w-ico'); if (ic) ic.innerHTML = '<svg class="icon"><use href="#' + vm.icon + '"></use></svg>';
-        var de = card.querySelector('.desc'); if (de) de.textContent = (cfg.pre || '') + descText(vf.max, vf.prefix, vf.precip);
+        var ic = card.querySelector('.w-ico'); if (ic) ic.innerHTML = '<svg class="icon"><use href="#' + vc.icon + '"></use></svg>';
+        var de = card.querySelector('.desc'); if (de) de.textContent = (cfg.pre || '') + warm(vf.max) + ', ' + vc.desc + '.';
       }
       if (cfg.dest) {
         var key = cfg.dest.lat + ',' + cfg.dest.lon;
         chain = chain.then(function () {
           return (cache[key] || (cache[key] = getForecast(cfg.dest))).then(function (df) {
             var dd = df[date], del = card.querySelector('.dest');
-            if (dd && del) del.innerHTML = '<b>' + cfg.label + ':</b> ' + dd.max + ' °C · ' + look(dd.prefix).text;
+            if (dd && del) del.innerHTML = '<b>' + cfg.label + ':</b> ' + dd.max + ' °C · ' + CAT[category(dd.prefix, dd.precip)].text;
           }).catch(function () {});
         });
       }
