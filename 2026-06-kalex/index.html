@@ -199,6 +199,14 @@ b,strong{font-weight:700;}
   font-size:.93rem;
 }
 .plan-day{font-weight:700;color:var(--accent);}
+.plan-note{
+  display:flex;gap:10px;
+  font-size:.82rem;color:var(--muted);
+  margin-top:14px;padding-top:12px;
+  border-top:1px solid var(--line);
+  text-wrap:pretty;
+}
+.plan-note .icon{color:var(--accent-2);margin-top:.15em;}
 
 /* ---------- Karte ---------- */
 .mapbox{padding:20px;}
@@ -451,6 +459,13 @@ Bitte vor dem Ausflug die aktuelle Entwicklung prüfen (yr.no ist auf Englisch):
   <div class="plan-row"><span class="plan-day">Di 30. 6.</span><span>Regentag → Festung Stachelberg (unter Tage, Regen egal).</span></div>
   <div class="plan-row"><span class="plan-day">Mi 1. 7.</span><span>Kühl/Regen → Glashütte Harrachov (bei Aufklaren Mumlava-Wasserfälle) oder Aquacentrum.</span></div>
   <div class="plan-row"><span class="plan-day">Do 2. 7.</span><span>Abreise.</span></div>
+  <div class="plan-note">
+    <svg class="icon"><use href="#i-info"></use></svg>
+    <span>Dieser Tagesvorschlag folgt der Wettervorhersage und ist nur eine Empfehlung. Da sich das Wetter
+    ändern kann, schaut bitte morgens auf die aktuelle Vorhersage oben und tauscht die Tage flexibel:
+    Outdoor-Ziele (Sněžka, Baumwipfelpfad, E-Bikes) an sonnige Tage, Indoor-Ziele (Festung Stachelberg,
+    Glashütte Harrachov, Aquaparks/Hallenbad) an Regentage.</span>
+  </div>
 </div>
 </section>
 
